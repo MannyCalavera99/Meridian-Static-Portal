@@ -1,0 +1,165 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.list{
+    display: flex;    
+    justify-content: space-around;
+    list-style: none;
+    width: 20%;
+    
+   
+
+}
+
+.list a:hover{
+    color: aquamarine;
+}
+
+.list a{
+    text-decoration: none;
+    color: aliceblue;
+
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(131, 105, 154);
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 2434343434;
+}
+
+.link{
+text-decoration: none;
+padding-left: 30px;
+color: azure;
+
+}
+
+.banner{
+    background-image: url(../img/banner.jpg);
+    height: calc(100vh - 58px);
+    position: relative;
+    z-index: 0;
+
+}
+
+.banner .welcome-msg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: aliceblue;
+    text-align: center;
+    transform: translate(-50% , -50%);
+    z-index: 2;
+
+}
+
+.banner .welcome-msg h1{
+    font-size: 60px;
+}
+
+.banner .welcome-msg button{
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 20px;
+    background-color: bisque;
+
+}
+
+.overlay{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.726);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    
+}
+
+.services{
+    display: flex;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.image{
+    width: 50%;
+}
+
+.services-text{
+    text-align: center;
+    font-size: 60px;
+}
+
+
+
+.mission{
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    flex-direction:row-reverse;
+    background-color: beige;
+
+}
+.mission .mis-img{
+    background-image: url(../img/books.jpg);
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    width: 100%;
+    
+}
+
+.mission p {
+    font-size: 40px; 
+    text-align: center;
+    width: 100%;
+
+}
+
+.about-us{
+    margin: 100px 0 ;
+
+}
+
+
+.about-us h1{
+    font-size: 45px;
+    text-align: center;
+}
+
+.about-us p{
+    margin: 0 65px;
+    font-size: 25px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.463);
+}
+
+.bottom-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(106, 106, 180);
+    padding: 24px;
+}
+
+.bottom-nav .bottom-nav-icons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom-nav .bottom-nav-icons img{
+    width: 30%;
+}
+
+.bottom-nav p{
+    color: white;
+}
