@@ -1,0 +1,65 @@
+name: Asset & HTML Integrity Audit
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [ci/asset-verification]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run static asset integrity audit
+        run: python scripts/audit_assets.py
+
+      - name: Upload audit report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-audit-report-py${{ matrix.python-version }}
+          path: artifacts/asset-audit-report.txt
+
+  verify-html:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate HTML document structure
+        run: |
+          python -c '
+          from pathlib import Path
+          html = Path("index.html").read_text(encoding="utf-8")
+          required = ["<!DOCTYPE html>", "<html", "<head>", "<title>", "<body>", "</html>"]
+          missing = [tag for tag in required if tag.lower() not in html.lower()]
+          assert not missing, f"Missing HTML tags: {missing}"
+          print("HTML structure check passed.")
+          '
