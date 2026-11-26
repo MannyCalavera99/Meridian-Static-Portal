@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload audit report artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: asset-audit-report-py${{ matrix.python-version }}
           path: artifacts/asset-audit-report.txt
